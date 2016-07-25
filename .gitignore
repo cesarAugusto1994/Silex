@@ -1,7 +1,7 @@
 
 .gitignore
 .idea
-bin/
-var/
-vendor/
+bin/*
+var/*
+vendor/*
 composer.phar
