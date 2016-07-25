@@ -1,0 +1,92 @@
+{% extends 'template_tela.twig' %}
+    {% block title %}Users List{% endblock %}
+{% block head %}{{ parent() }}{% endblock %}
+    {% block nome_tela %}Usuarios WebPDV{% endblock %}
+    {% block nome_relatorio %}Usuarios WebPDV{% endblock %}
+    {% block content_form %}
+
+        <form role="form" class="form-horizontal" action="{{ path('users_list_find') }}" method="get">
+            <div class="box-body">
+
+                <div class="form-group">
+                    <label for="loja" class="col-sm-2 control-label">Loja</label>
+                    <div class="col-sm-10">
+                        <select name="loja" class="selectpicker show-tick" data-live-search="true">
+                            <option value=""></option>
+                            {% for loja in lojas %}
+                                <option value="{{ loja.id }}"
+                                    {% if loja.id == loja_request %}
+                                        selected="selected"
+                                    {% endif %}
+                                >{{ loja.id }} - {{ loja.nome }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="username" value="{{ nome_request }}" class="form-control" placeholder="Name">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">Login</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="login" value="{{ login_request }}" class="form-control" placeholder="login">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="ativo" class="col-sm-2 control-label">Situacao</label>
+                    <div class="col-sm-10">
+                        <select id="ativo" name="ativo" class="selectpicker show-tick">
+                            <option value="">Todos</option>
+                            <option value="">Ativo</option>
+                            <option value="">Inativo</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-default">Buscar</button>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    {% endblock %}
+    {% block content_table %}
+        <div class="box-body table-responsive no-padding">
+            <table id="example2" class="table table-bordered table-striped">
+                <caption>Lista de Usuarios</caption>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Created</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for user in users %}
+                    <tr {% if user.active == 0 %} class="info" {% endif %}>
+                        <td>{{ user.id }}</td>
+                        <td><a href="{{ path('profile', { idUser : user.id }) }}">{{ user.username|convert_encoding('UTF-8', 'iso-8859-1') }}</a></td>
+                        <td>{{ user.created|date('d/F/y g:i A') }}</td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td><em>Nada encontrado.</em></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+                <tfoot>
+                <tr>
+                    <th colspan="3"></th>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    {% endblock %}

@@ -1,0 +1,6 @@
+
+.gitignore
+bin/
+var/
+vendor/
+composer.phar

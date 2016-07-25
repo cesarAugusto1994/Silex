@@ -1,0 +1,22 @@
+{% extends 'template_tela.twig' %}
+{% block content %}
+    {% if sucesso is defined %}
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            <strong>Sucesso!</strong> {{ sucesso }}
+        </div>
+    {% endif %}
+    {% if error is defined and error|length > 0 %}
+        <div class="alert alert-danger alert-dismissable" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">x</span></button>
+            <strong>Erro!</strong> {{ error }}
+        </div>
+    {% endif %}
+
+    {% block content_table %}
+
+    {% endblock %}
+
+{% endblock %}

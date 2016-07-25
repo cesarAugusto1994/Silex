@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Usuarios{% endblock %} - My Webpage</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    {% block head %}
+        {% include 'css.twig' %}
+    {% endblock %}
+</head>
+<body>
+<div id="wrapper">
+    {% include 'head.twig' %}
+    {% include 'side-bar-menu.twig' %}
+    <div class="content-wrapper">
+            {% block content %}{% endblock %}
+    </div>
+    {% include 'footer.twig' %}
+    {% include 'configurations.twig' %}
+</div>
+{% include 'javascript.twig' %}
+</body>
+</html>

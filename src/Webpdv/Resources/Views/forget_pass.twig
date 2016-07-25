@@ -1,0 +1,27 @@
+{% extends 'base.twig' %}
+    {% block title %}Forgot Password{% endblock %}
+    {% block head %}{{ parent() }}{% endblock %}
+{% block content %}
+
+    <div class="register-box">
+        <div class="register-logo">
+            <a href="{{ path('index') }}"><b>C</b>esar</a>
+        </div>
+
+        <div class="register-box-body">
+            <p class="login-box-msg">I Forgot My Password</p>
+            <form method="post" action="">
+                <div class="form-group has-feedback">
+                    <input type="email" name="_username" class="form-control" placeholder="Email" required>
+                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                </div>
+                <div class="row">
+                    <div class="col-xs-4">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">Send</button>
+                    </div>
+                </div>
+            </form>
+            <a href="{{ app.url_generator.generate('login') }}">Go back</a>
+        </div>
+    </div>
+{% endblock %}

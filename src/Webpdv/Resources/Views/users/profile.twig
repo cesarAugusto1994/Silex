@@ -1,0 +1,125 @@
+{% extends 'template2.twig' %}
+    {% block title %}Perfil{% endblock %}
+{% block head %}{{ parent() }}{% endblock %}
+    {% block nome_tela %}Perfil{% endblock %}
+    {% block nome_relatorio %}Perfil{% endblock %}
+{% block template %}
+    <div class="row">
+        <div class="col-md-3">
+
+            {% if sucesso is defined %}
+                <div class="alert alert-success" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                aria-hidden="true">×</span></button>
+                    <strong>Sucesso!</strong> {{ sucesso }}
+                </div>
+            {% endif %}
+            {% if error is defined and error|length > 0 %}
+                <div class="alert alert-danger alert-dismissable" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                aria-hidden="true">x</span></button>
+                    <strong>Erro!</strong> {{ error }}
+                </div>
+            {% endif %}
+
+            <!-- Profile Image -->
+            <div class="box box-primary">
+                <div class="box-body box-profile">
+                    <img class="profile-user-img img-responsive img-circle"
+                         src="
+                        {% if user.avatar|length > 0 %}
+                            {{ user.avatar }}
+                        {% else %}
+                            {{ app['application.default.user.avatar'] }}
+                        {% endif %}
+                         " alt="User profile picture">
+                    <h3 class="profile-username text-center">{{ user.username }}</h3>
+                    <p class="text-muted text-center">{{ user.cargo.nome }}</p>
+                    <p class="text-muted text-center">
+                        {{ user.isActive }}
+                    </p>
+
+                    <ul class="list-group list-group-unbordered">
+                        <li class="list-group-item">
+                            <b>Loja</b> <b class="pull-right">{{ user.loja.id }} - {{ user.loja.nome }}</b>
+                        </li>
+                        <li class="list-group-item">
+                            <b>Criado</b> <b class="pull-right">{{ user.created|date('d/F/y') }}</b>
+                        </li>
+                        <li class="list-group-item">
+                            <b>Login</b> <i class="pull-right">{{ user.email }}</i>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#activity" data-toggle="tab">Activity</a></li>
+                    <li><a href="#timeline" data-toggle="tab">Timeline</a></li>
+                    <li><a href="#settings" data-toggle="tab">Settings</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="active tab-pane" id="activity"></div>
+                    <div class="tab-pane" id="timeline"></div>
+                    <div class="tab-pane" id="settings">
+                        <form class="form-horizontal" action="{{ path('update_user', { idUser : user.id }) }}">
+                            <div class="form-group">
+                                <label for="inputName" class="col-sm-2 control-label">Name</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="inputName" name="username" value="{{ user.username }}" placeholder="Name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+                                <div class="col-sm-10">
+                                    <input type="email" class="form-control" id="inputEmail" name="email" value="{{ user.email }}" placeholder="Email">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="login" class="col-sm-2 control-label">Login</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="login" name="login" value="{{ user.login }}" placeholder="Name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="loja" class="col-sm-2 control-label">Loja</label>
+                                <div class="col-sm-10">
+                                    <select name="loja" id="loja" class="selectpicker show-tick">
+                                        {% for loja in lojas %}
+                                            <option value="{{ loja.id }}"
+                                                    {% if loja.id == user.loja.id %}
+                                                        selected="selected"
+                                                    {% endif %}
+                                            >{{ loja.id }} - {{ loja.nome }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="cargo" class="col-sm-2 control-label">Cargo</label>
+                                <div class="col-sm-10">
+                                    <select name="cargo" id="cargo" class="selectpicker show-tick">
+                                        {% for cargo in cargos %}
+                                            <option value="{{ cargo.id }}"
+                                                    {% if cargo.id == user.cargo.id %}
+                                                        selected="selected"
+                                                    {% endif %}
+                                            >{{ cargo.nome }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" class="btn btn-danger">Save</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
