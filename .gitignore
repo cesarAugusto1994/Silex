@@ -1,7 +1,7 @@
 
-.gitignore
-.idea
-bin/*
-var/*
-vendor/*
-composer.phar
+/.gitignore
+/.idea
+/bin/
+/var/cache/
+/vendor/
+/composer.phar
