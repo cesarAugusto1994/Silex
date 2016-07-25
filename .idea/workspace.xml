@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a86c0181-1843-4330-a8e1-eba66da07c9a" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.dockerfile" afterPath="$PROJECT_DIR$/dockerfile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="a86c0181-1843-4330-a8e1-eba66da07c9a" name="Default" comment="" />
     <ignored path="Silex-tests.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -296,12 +293,12 @@
       <workItem from="1469099737874" duration="5990000" />
       <workItem from="1469196429371" duration="18132000" />
       <workItem from="1469272657804" duration="11566000" />
-      <workItem from="1469445842355" duration="6430000" />
+      <workItem from="1469445842355" duration="6777000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="68837000" />
+    <option name="totallyTimeSpent" value="69184000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="51" y="24" width="1869" height="1056" extended-state="6" />
